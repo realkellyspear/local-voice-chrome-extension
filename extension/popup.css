@@ -1,0 +1,192 @@
+/* popup.css — dark glassmorphism UI */
+
+:root {
+  --bg: #0d0d12;
+  --surface: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #e5e7eb;
+  --text-dim: #9ca3af;
+  --accent: #a78bfa;
+  --accent-2: #818cf8;
+  --danger: #f87171;
+  --ok: #34d399;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 360px;
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(129, 140, 248, 0.18), transparent 60%),
+    radial-gradient(1000px 500px at 110% 110%, rgba(167, 139, 250, 0.14), transparent 55%),
+    var(--bg);
+  color: var(--text);
+}
+
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo { font-size: 26px; }
+.title-group h1 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+.subtitle {
+  font-size: 11px;
+  color: var(--text-dim);
+}
+.status-pill {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-size: 10.5px;
+  color: var(--text-dim);
+  backdrop-filter: blur(10px);
+}
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fbbf24;
+  transition: background 0.3s ease;
+}
+.status-pill.connected .status-dot { background: var(--ok); box-shadow: 0 0 8px var(--ok); }
+.status-pill.disconnected .status-dot { background: var(--danger); }
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: var(--text-dim);
+}
+.accent { color: var(--accent); }
+
+/* Row + select */
+.row { display: flex; gap: 8px; }
+.select, .textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 9px 10px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.select:focus, .textarea:focus { border-color: var(--accent-2); }
+.select { flex: 1; appearance: none; cursor: pointer; }
+
+.icon-btn {
+  width: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-dim);
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Slider */
+.slider {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+  height: 4px;
+}
+
+/* Buttons */
+.controls { display: flex; gap: 8px; }
+.btn {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  backdrop-filter: blur(8px);
+}
+.btn:hover { border-color: var(--accent); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-2), var(--accent));
+  border: none;
+  color: #0d0d12;
+}
+.btn-primary:hover { filter: brightness(1.12); }
+.btn-danger:hover { border-color: var(--danger); color: var(--danger); }
+
+/* Textarea */
+.textarea {
+  min-height: 74px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.45;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-dim);
+  padding: 0 4px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: rgba(220, 38, 38, 0.92);
+  color: #fff;
+  font-size: 12px;
+  max-width: 90%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }

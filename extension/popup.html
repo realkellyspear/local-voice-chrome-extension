@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="logo">🎙️</div>
+      <div class="title-group">
+        <h1>LocalVoice</h1>
+        <p class="subtitle">100% local · private TTS</p>
+      </div>
+      <div class="status-pill" id="status-pill">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-text">Checking…</span>
+      </div>
+    </header>
+
+    <section class="card">
+      <label class="label" for="voice-select">Voice</label>
+      <div class="row">
+        <select id="voice-select" class="select" disabled>
+          <option value="">Loading voices…</option>
+        </select>
+        <button id="refresh-btn" class="icon-btn" title="Refresh voices">⟳</button>
+      </div>
+
+      <label class="label" for="speed-slider">
+        Speed: <span id="speed-value" class="accent">1.0×</span>
+      </label>
+      <input type="range" id="speed-slider" class="slider"
+             min="0.5" max="2.0" step="0.05" value="1.0" />
+
+      <div class="controls">
+        <button id="play-btn" class="btn btn-primary" title="Play">
+          ▶ Play
+        </button>
+        <button id="pause-btn" class="btn" title="Pause">⏸ Pause</button>
+        <button id="stop-btn" class="btn btn-danger" title="Stop">⏹ Stop</button>
+      </div>
+
+      <textarea id="text-area" class="textarea"
+                placeholder="…or paste text here to synthesize"></textarea>
+    </section>
+
+    <footer class="footer">
+      <span id="engine-info">engine: —</span>
+      <span id="device-info">device: —</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
